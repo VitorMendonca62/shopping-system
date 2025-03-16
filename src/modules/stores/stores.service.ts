@@ -20,7 +20,7 @@ export class StoresService {
   }
 
   async findAll(): Promise<Store[]> {
-    const result=  await this.storeRepository.query(`SELECT * FROM lojas`);
+    const result=  await this.storeRepository.query(`SELECT id, cnpj, nome, numero_sala, telefone, email, quantidade_funcionarios categoria, aluguel FROM lojas;`);
     if (result.affectedRows === 0) {
       throw new NotFoundException('Loja não encontrada');
     }
