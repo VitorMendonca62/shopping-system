@@ -54,15 +54,15 @@ export class EmployeService {
     return result[0];
   }
 
-  async update(id: string, updateEmployeDto: UpdateEmployeDTO): Promise<Employe> {
+  async update(id: string, employe: Employe): Promise<Employe> {
     const result = await this.employeRepository.query(
       `UPDATE funcionarios SET cpf = COALESCE(?, cpf), nome = COALESCE(?, nome), funcao = COALESCE(?, funcao), email = COALESCE(?, email) WHERE id = ?`,
-      [updateEmployeDto.cpf, updateEmployeDto.nome, updateEmployeDto.funcao, updateEmployeDto.email, id]
+      [employe.cpf, employe.nome, employe.funcao, employe.email, id]
     );
     if (result.affectedRows === 0) {
       throw new NotFoundException('Funcionário não encontrado');
     }
-    return this.findOne(id);
+    return employe;
   }
 
   async remove(id: string): Promise<void> {
