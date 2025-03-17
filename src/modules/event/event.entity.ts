@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { CreateEventDTO, UpdateEventDTO } from './event.dto';
+import { CreateEventDTO } from './event.dto';
 
 @Entity({name: 'eventos'})
 export class Event {
@@ -27,7 +27,7 @@ export class Event {
   @Column()
   idLoja?: number;
 
-  constructor(data: CreateEventDTO | UpdateEventDTO) {
+  constructor(data: CreateEventDTO) {
     if(data){
       if (data.nome) this.nome = data.nome;
       if (data.data_inicio) this.data_inicio = data.data_inicio;
