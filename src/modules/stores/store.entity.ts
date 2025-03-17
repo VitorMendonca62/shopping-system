@@ -15,16 +15,16 @@ export class Store {
   @Column()
   numero_sala: number;
 
-  @Column({length: 11})
+  @Column({length: 11, nullable: true})
   telefone?: string;
 
-  @Column()
+  @Column({nullable: true})
   email?: string;
 
   @Column({default: 0})
   quantidade_funcionarios?: number;
 
-  @Column({length: 50})
+  @Column({length: 50, nullable: true})
   categoria?: string;
 
   @Column('decimal')

@@ -30,6 +30,20 @@ export class EmployeService {
       `INSERT INTO funcionarios (cpf, nome, funcao, email, idLoja, idempresaserv) VALUES (?, ?, ?, ?, ?, ?)`,
       [employe.cpf, employe.nome, employe.funcao, employe.email, employe.idLoja, employe.idempresaserv]
     );
+
+    // Incrementar a quantidade de funcionários
+    if (type === 'loja') {
+      await this.storeRepository.query(
+        `UPDATE lojas SET quantidade_funcionarios = quantidade_funcionarios + 1 WHERE id = ?`,
+        [storeId]
+      );
+    } else if (type === 'empresa') {
+      await this.storeRepository.query(
+        `UPDATE empresas_prestadoras_servico SET quantidade_funcionarios = quantidade_funcionarios + 1 WHERE id = ?`,
+        [storeId]
+      );
+    }
+
     return employe;
   }
 
@@ -62,7 +76,7 @@ export class EmployeService {
     if (result.affectedRows === 0) {
       throw new NotFoundException('Funcionário não encontrado');
     }
-    return employe;
+    return this.findOne(id);
   }
 
   async remove(id: string): Promise<void> {

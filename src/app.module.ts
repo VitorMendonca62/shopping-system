@@ -6,6 +6,8 @@ import { EventModule } from './modules/event/event.module';
 import { Store } from './modules/stores/store.entity';
 import { Employe } from './modules/employe/employe.entity';
 import { Event } from './modules/event/event.entity';
+import { SuppliersModule } from './modules/suppliers/suppliers.module';
+import { OutsourcedModule } from './modules/outsourced/outsourced.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { Event } from './modules/event/event.entity';
     StoresModule,
     EmployeModule,
     EventModule,
+    SuppliersModule,
+    OutsourcedModule,
   ],
 })
 export class AppModule {}
